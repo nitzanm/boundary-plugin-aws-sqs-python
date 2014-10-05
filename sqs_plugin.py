@@ -7,7 +7,7 @@ from boundary_aws_plugin.cloudwatch_metrics import CloudwatchMetrics
 
 class SqsCloudwatchMetrics(CloudwatchMetrics):
     def __init__(self, access_key_id, secret_access_key):
-        return super(SqsCloudwatchMetrics, self).__init__(access_key_id, secret_access_key, 'AWS/RDS')
+        return super(SqsCloudwatchMetrics, self).__init__(access_key_id, secret_access_key, 'AWS/SQS')
 
     def get_region_list(self):
         # Some regions are returned that actually do not support SQS.  Skip those.
