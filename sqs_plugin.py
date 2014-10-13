@@ -5,6 +5,7 @@ import sys
 from boundary_aws_plugin.cloudwatch_plugin import CloudwatchPlugin
 from boundary_aws_plugin.cloudwatch_metrics import CloudwatchMetrics
 
+
 class SqsCloudwatchMetrics(CloudwatchMetrics):
     def __init__(self, access_key_id, secret_access_key):
         return super(SqsCloudwatchMetrics, self).__init__(access_key_id, secret_access_key, 'AWS/SQS')
@@ -35,15 +36,10 @@ class SqsCloudwatchMetrics(CloudwatchMetrics):
             ('ApproximateNumberOfMessagesNotVisible', 'Average', 'AWS_SQS_NUMBER_OF_MESSAGES_NOT_VISIBLE'),
         )
 
-class SqsCloudwatchPlugin(CloudwatchPlugin):
-    def __init__(self):
-        super(SqsCloudwatchPlugin, self).__init__(SqsCloudwatchMetrics, '', 'boundary-plugin-aws-sqs-python-status')
-
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == '-v':
         import logging
         logging.basicConfig(level=logging.INFO)
 
-    plugin = SqsCloudwatchPlugin()
+    plugin = CloudwatchPlugin(SqsCloudwatchMetrics, '', 'boundary-plugin-aws-sqs-python-status')
     plugin.main()
-
