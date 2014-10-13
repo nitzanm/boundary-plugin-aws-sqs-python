@@ -55,3 +55,4 @@ target/
 
 param.json
 reports.log
+deploy_plugin.cmd
